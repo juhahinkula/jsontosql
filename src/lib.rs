@@ -23,9 +23,17 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
   };
 
   // Get key & value
+  let mut columns = String::new();
+  let mut values = String::new();
   for (key, value) in data[0].as_object().unwrap() {
-      println!("INSERT INTO {} VALUES ({:?} ===> {:?})", &args.table_name, key, value);
+      columns = columns + ", " + &key; 
+      values = values + ", " + &value.to_string(); 
   }
+  println!("{}", values);
+  println!("{}", columns);
+
+  let statement = format!("INSERT INTO {} ({}) VALUES ({});", &args.table_name, columns, values);
+  println!("{}", statement);
 
   Ok(())  
 }
