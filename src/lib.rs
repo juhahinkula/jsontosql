@@ -24,7 +24,7 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
 
   // Get key & value
   for (key, value) in data[0].as_object().unwrap() {
-      println!("{:?} ===> {:?}", key, value);
+      println!("INSERT INTO {} VALUES ({:?} ===> {:?})", &args.table_name, key, value);
   }
 
   Ok(())  
