@@ -26,13 +26,13 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
   let mut columns = String::new();
   let mut values = String::new();
   for (key, value) in data[0].as_object().unwrap() {
-      columns = columns + ", " + &key; 
-      values = values + ", " + &value.to_string(); 
+      if !&key.is_empty() {      
+        columns = columns + &key.trim() + ", "; 
+        values = values + &value.to_string().trim() + ", "; 
+      }
   }
-  println!("{}", values);
-  println!("{}", columns);
 
-  let statement = format!("INSERT INTO {} ({}) VALUES ({});", &args.table_name, columns, values);
+  let statement = format!("INSERT INTO {} ({}) VALUES ({});", &args.table_name, columns.trim(), values.trim());
   println!("{}", statement);
 
   Ok(())  
