@@ -22,8 +22,6 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
     serde_json::from_str::<Value>(&content).unwrap() 
   };
 
-  // length = data.as_array().unwrap().len()
-
   for i in 0..data.as_array().unwrap().len()-1 {
       let mut columns = String::new();
       let mut values = String::new();
