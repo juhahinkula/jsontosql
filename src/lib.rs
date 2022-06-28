@@ -3,6 +3,7 @@ use clap::Parser;
 use serde_json::{Number, Value};
 
 #[derive(Parser)]
+#[clap(author="Juha Hinkula", version="1.0", about="Convert JSON to SQL insert statements")]
 struct Cli {
     table_name: String,
     #[clap(parse(from_os_str))]
