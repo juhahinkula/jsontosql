@@ -1,4 +1,6 @@
 use std::error::Error;
+use std::fs::File;
+use std::io::{Write};
 use clap::Parser;
 use serde_json::{Number, Value};
 
@@ -23,6 +25,8 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
         serde_json::from_str::<Value>(&content).unwrap() 
     };
 
+    let mut output = File::create("result.sql")?;
+
     for i in 0..data.as_array().unwrap().len()-1 {
         let mut columns = String::new();
         let mut values = String::new();
@@ -35,9 +39,9 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
         }
       
         let statement = format!("INSERT INTO {} ({}) VALUES ({});", &args.table_name, &columns.trim(), &values.trim());
+        write!(output, "{}\n", &statement)?;
         println!("{}", statement);
     }
-
     
     Ok(())  
 }
