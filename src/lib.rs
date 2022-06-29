@@ -30,11 +30,17 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
     for i in 0..json_data.as_array().unwrap().len()-1 {
         let mut columns = String::new();
         let mut values = String::new();
+        let mut is_first = true;
   
         for (key, value) in json_data[i].as_object().unwrap() {
-            if !&key.is_empty() {      
-                columns = columns + &key.trim() + ", "; 
-                values = values + &value.to_string().trim() + ", "; 
+            if is_first {
+                columns = columns + &key.trim();
+                values = values + &value.to_string().trim();
+                is_first = false;
+            }
+            else {      
+                columns = columns + ", " +  &key.trim(); 
+                values = values + ", " + &value.to_string().trim(); 
             }
         }
       
