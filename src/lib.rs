@@ -17,26 +17,27 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
     let content = match result {
         Ok(content) => { content },
         Err(error) => { return Err(error.into()); }
-  };
+    };
 
-  let data = { 
-    serde_json::from_str::<Value>(&content).unwrap() 
-  };
+    let data = { 
+        serde_json::from_str::<Value>(&content).unwrap() 
+    };
 
-  for i in 0..data.as_array().unwrap().len()-1 {
-      let mut columns = String::new();
-      let mut values = String::new();
+    for i in 0..data.as_array().unwrap().len()-1 {
+        let mut columns = String::new();
+        let mut values = String::new();
   
-      for (key, value) in data[i].as_object().unwrap() {
-          if !&key.is_empty() {      
-              columns = columns + &key.trim() + ", "; 
-              values = values + &value.to_string().trim() + ", "; 
-          }
-      }
-      let statement = format!("INSERT INTO {} ({}) VALUES ({});", &args.table_name, columns.trim(), values.trim());
-      println!("{}", statement);
-  }
+        for (key, value) in data[i].as_object().unwrap() {
+            if !&key.is_empty() {      
+                columns = columns + &key.trim() + ", "; 
+                values = values + &value.to_string().trim() + ", "; 
+            }
+        }
+      
+        let statement = format!("INSERT INTO {} ({}) VALUES ({});", &args.table_name, &columns.trim(), &values.trim());
+        println!("{}", statement);
+    }
 
- 
-  Ok(())  
+    
+    Ok(())  
 }
