@@ -1,6 +1,11 @@
 # JsonToSql
 Rust cli that converts json file into SQL Insert statements
 
+Clone the repository and build the project
+```
+cargo build
+```
+
 USAGE:
 ```
 jsontosql <TABLE_NAME> <FILE>
