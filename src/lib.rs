@@ -21,17 +21,17 @@ pub fn run() ->  Result<(), Box<dyn Error>> {
         Err(error) => { return Err(error.into()); }
     };
 
-    let data = { 
+    let json_data = { 
         serde_json::from_str::<Value>(&content).unwrap() 
     };
 
     let mut output = File::create("result.sql")?;
 
-    for i in 0..data.as_array().unwrap().len()-1 {
+    for i in 0..json_data.as_array().unwrap().len()-1 {
         let mut columns = String::new();
         let mut values = String::new();
   
-        for (key, value) in data[i].as_object().unwrap() {
+        for (key, value) in json_data[i].as_object().unwrap() {
             if !&key.is_empty() {      
                 columns = columns + &key.trim() + ", "; 
                 values = values + &value.to_string().trim() + ", "; 
