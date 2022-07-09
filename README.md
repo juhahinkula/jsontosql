@@ -41,7 +41,7 @@ jsontosql country .\countries.json
 ```
 It creates result.sql file that looks the following
 ```
-NSERT INTO country (abbreviation, country) VALUES ("AF", "Afghanistan");
+INSERT INTO country (abbreviation, country) VALUES ("AF", "Afghanistan");
 INSERT INTO country (abbreviation, country) VALUES ("AL", "Albania");
 INSERT INTO country (abbreviation, country) VALUES ("DZ", "Algeria");
 ...
