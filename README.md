@@ -16,6 +16,23 @@ jsontosql <TABLE_NAME> <FILE>
 ```
 ,where TABLE_NAME is database table name and FILE is json file. Both arguments are required.
 
+Json file format should be the following
+```
+[
+  {
+    "key1": "value1",
+    "key2": "value2",
+    ...
+  },
+  {
+    "key1": "value1",
+    "key2": "value2",
+    ...   
+  }
+  ...
+]
+```
+
 ## Example
 You can find countries.json example file from the repository
 ```
