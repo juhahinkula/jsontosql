@@ -14,7 +14,7 @@ cargo build
 ```
 jsontosql <TABLE_NAME> <FILE>
 ```
-,where TABLE_NAME is database table name and FILE is json file. Both arguments are requiered.
+,where TABLE_NAME is database table name and FILE is json file. Both arguments are required.
 
 ## Example
 You can find countries.json example file from the repository
