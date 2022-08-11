@@ -9,6 +9,7 @@ Clone the repository and build the project
 ```
 cargo build
 ```
+The command creates an executable file `target/debug/jsontosql`.
 
 ## Usage
 ```
